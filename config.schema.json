@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
+  "pluginAlias": "HomebridgePeopleMQTT",
   "pluginType": "platform",
   "singular": true,
   "schema": {
@@ -9,7 +9,23 @@
         "title": "Name",
         "type": "string",
         "required": true,
-        "default": "Example Dynamic Platform"
+        "default": "People MQTT"
+      },
+      "platform": {
+        "title": "Platform",
+        "type": "string",
+        "required": true,
+        "default": "HomebridgePeopleMQTT"
+      },
+      "brokerClientOptions": {
+        "title": "Broker Client Options",
+        "type": "object",
+        "required": true
+      },
+      "devices": {
+        "title": "List of network devices",
+        "type": "array",
+        "required": true
       }
     }
   }

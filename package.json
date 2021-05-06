@@ -1,16 +1,16 @@
 {
   "private": true,
-  "displayName": "Plugin Name",
-  "name": "homebridge-plugin-name",
+  "displayName": "Homebridge People MQTT",
+  "name": "@poblouin/homebridge-people-mqtt",
   "version": "1.0.0",
-  "description": "A short description about what your plugin does.",
+  "description": "Homebridge plugin that watches for specific network devices to toggle home occupancy on or off",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/USERNAME/GITHUB_PROJECT_NAME.git"
+    "url": "git@github.com:poblouin/homebridge-people-mqtt.git"
   },
   "bugs": {
-    "url": "https://github.com/USERNAME/GITHUB_PROJECT_NAME/issues"
+    "url": "https://github.com/poblouin/homebridge-people-mqtt/issues"
   },
   "engines": {
     "node": ">=10.17.0",
@@ -24,9 +24,14 @@
     "prepublishOnly": "npm run lint && npm run build"
   },
   "keywords": [
-    "homebridge-plugin"
+    "homebridge-plugin",
+    "home-occupancy",
+    "network-devices",
+    "mqtt"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "mqtt": "^4.2.6"
+  },
   "devDependencies": {
     "@types/node": "^14.14.31",
     "@typescript-eslint/eslint-plugin": "^4.16.1",

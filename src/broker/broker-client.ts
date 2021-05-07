@@ -6,31 +6,26 @@ export class BrokerClient {
   private log: Logger;
 
   constructor(config: IClientOptions | undefined, log: Logger) {
-    this.brokerClient = connect('mqtt://test.mosquitto.org');
+    this.brokerClient = connect(null, config);
     this.log = log;
-
-    this.initClient();
   }
 
   connected() {
     return this.brokerClient.connected;
   }
 
-  private initClient() {
-    this.brokerClient.on('connect', () => {
-      this.log.info('INFO: Broker Client connected');
-      // this.brokerClient.subscribe('presence', (err) => {
-      //   if (!err) {
-      //     this.brokerClient.publish('presence', 'Hello mqtt');
-      //   }
-      // });
-    });
-
-    // this.brokerClient.on('message', (topic, message) => {
-    //   // message is Buffer
-    //   console.log(message.toString());
-    //   // this.brokerClient.end();
-    // });
+  publish(topic: string, message: string | Buffer) {
+    this.log.info(`Publishing message ${message} on topic ${topic}`);
+    this.brokerClient.publish(topic, message);
   }
 
+  subscribe(topic: string, cb) {
+    this.log.debug(`Subscribing on topic ${topic}`);
+    this.brokerClient.subscribe(topic, { qos: 0 }, cb);
+  }
+
+  onEvent(event: string, cb) {
+    this.log.debug(`Registring callback for event ${event}`);
+    this.brokerClient.on(event, cb);
+  }
 }

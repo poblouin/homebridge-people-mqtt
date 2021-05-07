@@ -56,6 +56,7 @@ export class HomebridgePeopleMqtt implements DynamicPlatformPlugin {
     devicesList.forEach(device => {
       const uuid = this.api.hap.uuid.generate(device.mac);
       const existingAccessory = this.accessories.find(accessory => accessory.UUID === uuid);
+      const pingIPs = device.ip === '' ? config.devices?.map(device => device.ip) : [device.ip];
 
       if (existingAccessory) {
         this.log.info('Restoring existing accessory from cache:', existingAccessory.displayName);
@@ -65,7 +66,7 @@ export class HomebridgePeopleMqtt implements DynamicPlatformPlugin {
         this.api.updatePlatformAccessories([existingAccessory]);
 
         // Create platform accessory
-        new PeopleMqttAccessory(this, existingAccessory);
+        new PeopleMqttAccessory(this, existingAccessory, pingIPs);
       } else {
         this.log.info('Adding new accessory:', device.name);
 
@@ -78,7 +79,7 @@ export class HomebridgePeopleMqtt implements DynamicPlatformPlugin {
 
         // create the accessory handler for the newly create accessory
         // this is imported from `platformAccessory.ts`
-        new PeopleMqttAccessory(this, accessory);
+        new PeopleMqttAccessory(this, accessory, pingIPs);
 
         // link the accessory to your platform
         this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);

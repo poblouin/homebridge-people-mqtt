@@ -1,2 +1,2 @@
-export const PLATFORM_NAME = 'HomebridgePeopleMQTT';
-export const PLUGIN_NAME = 'homebridge-people-mqtt';
+export const PLATFORM_NAME = 'HomebridgePeopleMqtt';
+export const PLUGIN_NAME = '@poblouin/homebridge-people-mqtt';

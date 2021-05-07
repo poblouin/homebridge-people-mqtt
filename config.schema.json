@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "HomebridgePeopleMQTT",
+  "pluginAlias": "HomebridgePeopleMqtt",
   "pluginType": "platform",
   "singular": true,
   "schema": {
@@ -9,13 +9,13 @@
         "title": "Name",
         "type": "string",
         "required": true,
-        "default": "People MQTT"
+        "default": "@poblouin/homebridge-people-mqtt"
       },
       "platform": {
         "title": "Platform",
         "type": "string",
         "required": true,
-        "default": "HomebridgePeopleMQTT"
+        "default": "HomebridgePeopleMqtt"
       },
       "brokerClientOptions": {
         "title": "Broker Client Options",

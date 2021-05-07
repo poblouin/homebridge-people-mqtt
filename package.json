@@ -1,6 +1,6 @@
 {
   "private": true,
-  "displayName": "Homebridge People MQTT",
+  "displayName": "Homebridge People Mqtt",
   "name": "@poblouin/homebridge-people-mqtt",
   "version": "1.0.0",
   "description": "Homebridge plugin that watches for specific network devices to toggle home occupancy on or off",
@@ -30,7 +30,8 @@
     "mqtt"
   ],
   "dependencies": {
-    "mqtt": "^4.2.6"
+    "mqtt": "^4.2.6",
+    "ping": "^0.4.1"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",

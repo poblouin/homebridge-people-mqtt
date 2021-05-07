@@ -1,8 +1,8 @@
 import { API } from 'homebridge';
 
 import { PLATFORM_NAME } from './settings';
-import { HomebridgePeopleMQTT } from './platform';
+import { HomebridgePeopleMqtt } from './platform';
 
 export = (api: API) => {
-  api.registerPlatform(PLATFORM_NAME, HomebridgePeopleMQTT);
+  api.registerPlatform(PLATFORM_NAME, HomebridgePeopleMqtt);
 };

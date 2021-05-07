@@ -1,13 +1,15 @@
 import { PlatformConfig } from 'homebridge';
 import { IClientOptions } from 'mqtt';
 
-export interface INetworkDevices {
+export interface INetworkDevice {
     name: string;
     ip: string;
     mac: string;
 }
 
-export interface IBrokerConfig extends PlatformConfig {
+export interface IPeopleMqttConfig extends PlatformConfig {
     brokerClientOptions?: IClientOptions;
-    devices?: INetworkDevices;
+    devices?: Array<INetworkDevice>;
+    enableAnySensor?: boolean;
+    enableNoneSensor?: boolean;
 }

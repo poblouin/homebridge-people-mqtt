@@ -1,5 +1,4 @@
 {
-  "private": true,
   "displayName": "Homebridge People Mqtt",
   "name": "@poblouin/homebridge-people-mqtt",
   "version": "1.0.0",

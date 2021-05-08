@@ -1,4 +1,4 @@
-import { INetworkDevice } from './broker/broker-config';
+import { INetworkDevice } from './config';
 
 export const ANY_SENSOR: INetworkDevice = {
   name: 'Any',
@@ -11,3 +11,5 @@ export const NONE_SENSOR: INetworkDevice = {
   ip: '',
   mac: '00:00:00:00:00:00',
 };
+
+export const DEFAULT_POLLING_INTERVAL = 60 * 5 * 1000; // 5 minutes

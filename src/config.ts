@@ -12,4 +12,5 @@ export interface IPeopleMqttConfig extends PlatformConfig {
     devices?: Array<INetworkDevice>;
     enableAnySensor?: boolean;
     enableNoneSensor?: boolean;
+    pollingIntervalMs?: number;
 }

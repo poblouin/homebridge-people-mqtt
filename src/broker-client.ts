@@ -6,8 +6,16 @@ export class BrokerClient {
   private log: Logger;
 
   constructor(config: IClientOptions | undefined, log: Logger) {
-    this.brokerClient = connect(null, config);
     this.log = log;
+    this.brokerClient = connect(null, config);
+
+    this.onEvent('connect', () =>
+      this.log.debug('Connected to broker'),
+    );
+
+    this.onEvent('error', err =>
+      this.log.error(`Failed to connect to broker: ${JSON.stringify(err)}`),
+    );
   }
 
   connected() {

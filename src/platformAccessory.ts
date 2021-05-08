@@ -15,6 +15,7 @@ export class PeopleMqttAccessory {
     private readonly platform: HomebridgePeopleMqtt,
     private readonly accessory: PlatformAccessory,
     private readonly pingIPs: Array<string> | undefined,
+    private readonly pollingIntervalMs: number,
   ) {
     this.ipList = this.pingIPs || [];
     this.state = this.platform.Characteristic.OccupancyDetected.OCCUPANCY_NOT_DETECTED;
@@ -56,7 +57,7 @@ export class PeopleMqttAccessory {
     });
 
     // Init ping interval
-    setInterval(() => this.publishState(), 15000);
+    setInterval(() => this.publishState(), this.pollingIntervalMs);
   }
 
   handleOccupancyDetectedGet() {

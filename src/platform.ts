@@ -2,9 +2,9 @@ import { API, DynamicPlatformPlugin, Logger, PlatformAccessory, Service, Charact
 
 import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
 import { PeopleMqttAccessory } from './platformAccessory';
-import { BrokerClient } from './broker/broker-client';
-import { INetworkDevice, IPeopleMqttConfig } from './broker/broker-config';
-import { ANY_SENSOR, NONE_SENSOR } from './constants';
+import { BrokerClient } from './broker-client';
+import { INetworkDevice, IPeopleMqttConfig } from './config';
+import { ANY_SENSOR, DEFAULT_POLLING_INTERVAL, NONE_SENSOR } from './constants';
 
 
 export class HomebridgePeopleMqtt implements DynamicPlatformPlugin {
@@ -52,6 +52,7 @@ export class HomebridgePeopleMqtt implements DynamicPlatformPlugin {
       ...(config.enableAnySensor ? [ANY_SENSOR] : []),
       ...(config.enableNoneSensor ? [NONE_SENSOR] : []),
     ];
+    const pollingIntervalMs = config.pollingIntervalMs || DEFAULT_POLLING_INTERVAL;
 
     devicesList.forEach(device => {
       const uuid = this.api.hap.uuid.generate(device.mac);
@@ -65,23 +66,17 @@ export class HomebridgePeopleMqtt implements DynamicPlatformPlugin {
         existingAccessory.context.device = device;
         this.api.updatePlatformAccessories([existingAccessory]);
 
-        // Create platform accessory
-        new PeopleMqttAccessory(this, existingAccessory, pingIPs);
+        new PeopleMqttAccessory(this, existingAccessory, pingIPs, pollingIntervalMs);
       } else {
         this.log.info('Adding new accessory:', device.name);
 
-        // create a new accessory
         const accessory = new this.api.platformAccessory(device.name, uuid);
 
         // store a copy of the device object in the `accessory.context`
         // the `context` property can be used to store any data about the accessory you may need
         accessory.context.device = device;
 
-        // create the accessory handler for the newly create accessory
-        // this is imported from `platformAccessory.ts`
-        new PeopleMqttAccessory(this, accessory, pingIPs);
-
-        // link the accessory to your platform
+        new PeopleMqttAccessory(this, accessory, pingIPs, pollingIntervalMs);
         this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
       }
     });

@@ -83,8 +83,10 @@ export class PeopleMqttAccessory {
     this.platform.log.debug(`Pinging IP(s) ${this.ipList}`);
     const allRes = await Promise.all(
       this.ipList.map(ip => ping.promise.probe(ip, {
-        timeout: 10,
-        extra: ['-i', '2'],
+        timeout: 20, // Wait max 20 seconds for the ping request
+        deadline: 10, // Wait max 10 seconds per packet
+        min_reply: 1, // Wait for 1 reply only
+        extra: ['-i', '2'], // Sent a packet each 2 seconds
       })),
     );
 

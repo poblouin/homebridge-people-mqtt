@@ -82,7 +82,10 @@ export class PeopleMqttAccessory {
   async isDeviceAlive() {
     this.platform.log.debug(`Pinging IP(s) ${this.ipList}`);
     const allRes = await Promise.all(
-      this.ipList.map(ip => ping.promise.probe(ip)),
+      this.ipList.map(ip => ping.promise.probe(ip, {
+        timeout: 10,
+        extra: ['-i', '2'],
+      })),
     );
 
     this.platform.log.debug(`Ping result = ${allRes.map(res => res.alive)}`);

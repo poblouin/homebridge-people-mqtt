@@ -20,12 +20,50 @@
       "brokerClientOptions": {
         "title": "Broker Client Options",
         "type": "object",
-        "required": true
+        "required": true,
+        "properties": {
+          "port": {
+            "title": "Port",
+            "type": "number",
+            "required": true
+          },
+          "host": {
+            "title": "Host",
+            "type": "string",
+            "required": true
+          },
+          "protocol": {
+            "title": "Protocol",
+            "type": "string",
+            "required": true,
+            "default": "mqtt"
+          }
+        }
       },
       "devices": {
-        "title": "List of network devices",
         "type": "array",
-        "required": true
+        "required": true,
+        "items": {
+          "title": "Network devices",
+          "type": "object",
+          "properties": {
+            "mac": {
+              "title": "Mac Address",
+              "type": "string",
+              "required": true
+            },
+            "ip": {
+              "title": "IP Address",
+              "type": "string",
+              "required": true
+            },
+            "name": {
+              "title": "Device's friendly name",
+              "type": "string",
+              "required": true
+            }
+          }
+        }
       }
     }
   }

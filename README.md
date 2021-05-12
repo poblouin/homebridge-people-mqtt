@@ -24,9 +24,9 @@ interface INetworkDevice {
 interface IPeopleMqttConfig extends PlatformConfig {
     brokerClientOptions: IClientOptions;
     devices: Array<INetworkDevice>;
-    enableAnySensor?: boolean;
-    enableNoneSensor?: boolean;
-    pollingIntervalMs: number;
+    enableAnySensor?: boolean; // defaults to false
+    enableNoneSensor?: boolean; // defaults to false
+    pollingIntervalMs?: number; // defaults to 5 minutes
 }
 ```
 

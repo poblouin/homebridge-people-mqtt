@@ -2,7 +2,7 @@
     <img src="https://github.com/homebridge/branding/raw/master/logos/homebridge-wordmark-logo-vertical.png" width="150">
 </p>
 
-# Homebridge People MQTT plugin
+# Homebridge People MQTT plugin ![npm version](https://img.shields.io/npm/v/@poblouin/homebridge-people-mqtt) ![npm downloads](https://img.shields.io/npm/dt/@poblouin/homebridge-people-mqtt) [![Build and Lint](https://github.com/poblouin/homebridge-people-mqtt/actions/workflows/build.yml/badge.svg)](https://github.com/poblouin/homebridge-people-mqtt/actions/workflows/build.yml)
 
 This plugin is used to detect occupancy using network devices like phones, watches and others. It syncs the state in a MQTT broker.
 
